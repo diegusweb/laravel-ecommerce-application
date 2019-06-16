@@ -26,7 +26,7 @@ class BaseRepository implements BaseContract
      */
     public function create(array $attributes)
     {
-        // TODO: Implement create() method.
+        return $this->model->create($attributes);
     }
 
     /**
@@ -37,7 +37,7 @@ class BaseRepository implements BaseContract
      */
     public function update(array $attributes, int $id)
     {
-        // TODO: Implement update() method.
+        return $this->find($id)->update($attributes);
     }
 
     /**
@@ -49,7 +49,7 @@ class BaseRepository implements BaseContract
      */
     public function all($columns = array('*'), string $orderBy = 'id', string $sortBy = 'desc')
     {
-        // TODO: Implement all() method.
+        return $this->model->orderBy($orderBy, $sortBy)->get($columns);
     }
 
     /**
@@ -59,7 +59,7 @@ class BaseRepository implements BaseContract
      */
     public function find(int $id)
     {
-        // TODO: Implement find() method.
+        return $this->model->find($id);
     }
 
     /**
@@ -69,7 +69,7 @@ class BaseRepository implements BaseContract
      */
     public function findOneOrFail(int $id)
     {
-        // TODO: Implement findOneOrFail() method.
+        return $this->model->findOrFail($id);
     }
 
     /**
@@ -79,7 +79,7 @@ class BaseRepository implements BaseContract
      */
     public function findBy(array $data)
     {
-        // TODO: Implement findBy() method.
+        return $this->model->where($data)->all();
     }
 
     /**
@@ -89,7 +89,7 @@ class BaseRepository implements BaseContract
      */
     public function findOneBy(array $data)
     {
-        // TODO: Implement findOneBy() method.
+        return $this->model->where($data)->first();
     }
 
     /**
@@ -99,7 +99,7 @@ class BaseRepository implements BaseContract
      */
     public function findOneByOrFail(array $data)
     {
-        // TODO: Implement findOneByOrFail() method.
+        return $this->model->where($data)->firstOrFail();
     }
 
     /**
@@ -109,6 +109,6 @@ class BaseRepository implements BaseContract
      */
     public function delete(int $id)
     {
-        // TODO: Implement delete() method.
+        return $this->model->find($id)->delete();
     }
 }
