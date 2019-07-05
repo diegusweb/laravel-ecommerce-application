@@ -71,7 +71,7 @@ class AttributeController extends BaseController
         if (!$attribute) {
             return $this->responseRedirectBack('Error occurred while updating attribute.', 'error', true, true);
         }
-        return $this->responseRedirectBack('Attribute updated successfully' ,'success',false, false);
+        return $this->responseRedirect('admin.attributes.index' ,'Attribute updated successfully','success', false, false);
     }
 
     public function delete($id)

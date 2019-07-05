@@ -101,7 +101,7 @@ class CategoryController extends BaseController
         if (!$category) {
             return $this->responseRedirectBack('Error occurred while updating category.', 'error', true, true);
         }
-        return $this->responseRedirectBack('Category updated successfully' ,'success',false, false);
+        return $this->responseRedirect('admin.categories.index', 'Category update successfully' ,'success',false, false);
     }
 
     /**
