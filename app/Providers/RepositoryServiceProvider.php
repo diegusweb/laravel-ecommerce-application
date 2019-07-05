@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Contracts\AttributeContract;
 use App\Contracts\CategoryContract;
 use App\Repositories\CategoryRepository;
 use App\Repositories\AttributeRepository;
