@@ -12,11 +12,15 @@
             <div class="tile p-0">
                 <ul class="nav flex-column nav-tabs user-tabs">
                     <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#values" data-toggle="tab">Attribute Values</a></li>
                 </ul>
             </div>
         </div>
         <div class="col-md-9">
             <div class="tab-content">
+                <div class="tab-pane" id="values">
+                    <attribute-values :attributeid="{{ $attribute->id }}"></attribute-values>
+                </div>
                 <div class="tab-pane active" id="general">
                     <div class="tile">
                         <form action="{{ route('admin.attributes.update') }}" method="POST" role="form">
@@ -98,3 +102,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('backend/js/app.js') }}"></script>
+@endpush
