@@ -11,6 +11,8 @@ namespace App\Repositories;
 
 use App\Contracts\BrandContract;
 use App\Models\Brand;
+use App\Traits\UploadAble;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BrandRepository extends BaseRepository implements BrandContract
 {
