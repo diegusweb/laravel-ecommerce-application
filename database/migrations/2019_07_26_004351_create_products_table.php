@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('brand_id')->index();
             $table->string('sku');
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->text('description')->nullable();
             $table->unsignedInteger('quantity');
             $table->decimal('weight', 8, 2)->nullable();
