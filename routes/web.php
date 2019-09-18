@@ -11,12 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 require 'admin.php';
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::view('/', 'site.pages.homepage');
+
+
