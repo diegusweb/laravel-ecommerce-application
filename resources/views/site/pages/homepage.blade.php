@@ -1,7 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: diego
- * Date: 17-09-19
- * Time: 09:52 PM
- */
+@extends('site.app')
+@section('title', 'Homepage')
+
+@section('content')
+    <h2>Homepage</h2>
+@stop
