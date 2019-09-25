@@ -8,6 +8,7 @@
 
 namespace App\Services;
 
+use App\Models\Order;
 use PayPal\Api\Payer;
 use PayPal\Api\Item;
 use Mockery\Exception;
@@ -65,35 +66,44 @@ class PayPalService
                 ->setQuantity($item->quantity)
                 ->setPrice(sprintf('%0.2f', $item->price));
             array_push($items, $orderItems[$item->id]);
+
         }
         $itemList = new ItemList();
         $itemList->setItems($items);
+
         // Setting Shipping Details
         $details = new Details();
+
         $details->setShipping($shipping)
             ->setTax($tax)
             ->setSubtotal(sprintf('%0.2f', $order->grand_total));
+
         // Create chargeable amount
         $amount = new Amount();
         $amount->setCurrency(config('settings.currency_code'))
             ->setTotal(sprintf('%0.2f', $order->grand_total))
             ->setDetails($details);
+
         // Creating a transaction
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($itemList)
             ->setDescription($order->user->full_name)
             ->setInvoiceNumber($order->order_number);
+
         // Setting up redirection urls
         $redirectUrls = new RedirectUrls();
         $redirectUrls->setReturnUrl(route('checkout.payment.complete'))
             ->setCancelUrl(route('checkout.index'));
+
         // Creating payment instance
         $payment = new Payment();
+
         $payment->setIntent("sale")
             ->setPayer($payer)
             ->setRedirectUrls($redirectUrls)
             ->setTransactions(array($transaction));
+
         try {
             $payment->create($this->payPal);
         } catch (PayPalConnectionException $exception) {
@@ -104,6 +114,7 @@ class PayPalService
             echo $e->getMessage();
             exit(1);
         }
+
         $approvalUrl = $payment->getApprovalLink();
         header("Location: {$approvalUrl}");
         exit;

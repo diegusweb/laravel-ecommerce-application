@@ -66,4 +66,10 @@ return [
 
     ],
 
+    'settings' => [
+        'paypal_client_id' => env('PAYPAL_CLIENT_ID'),
+        'paypal_secret_id' => env('PAYPAL_CLIENT_SECRET'),
+        'paypal_sadbox' => env('PAYPAL_MODE')
+    ],
+
 ];
